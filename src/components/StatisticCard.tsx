@@ -9,15 +9,15 @@ interface StatisticCardProps {
 }
 const StatisticCard: React.FC<StatisticCardProps> = ({ title }) => {
   const data = [
-    { year: "1991", value: 3 },
-    { year: "1992", value: 4 },
-    { year: "1993", value: 3.5 },
-    { year: "1994", value: 5 },
-    { year: "1995", value: 4.9 },
-    { year: "1996", value: 6 },
-    { year: "1997", value: 7 },
-    { year: "1998", value: 9 },
-    { year: "1999", value: 13 },
+    { critere: "1991", nombre: 3 },
+    { critere: "1992", nombre: 4 },
+    { critere: "1993", nombre: 3.5 },
+    { critere: "1994", nombre: 5 },
+    { critere: "1995", nombre: 4.9 },
+    { critere: "1996", nombre: 6 },
+    { critere: "1997", nombre: 7 },
+    { critere: "1998", nombre: 9 },
+    { critere: "1999", nombre: 13 },
   ];
 
   const config = {
@@ -25,8 +25,8 @@ const StatisticCard: React.FC<StatisticCardProps> = ({ title }) => {
     responsive: true,
     height: 100,
     autoFit: true,
-    xField: "year",
-    yField: "value",
+    xField: "critere",
+    yField: "nombre",
     point: {
       size: 5,
       shape: "diamond",

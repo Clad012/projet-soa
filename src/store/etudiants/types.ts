@@ -8,6 +8,13 @@ export interface Etudiant extends ApiResponse {
   sexe: string;
 }
 
+export interface Resultat extends ApiResponse {
+  id: number;
+  etudiant_id: number;
+  annee_scolaire: string;
+  moyenne: number;
+}
+
 export type ApiResponse = Record<string, any>;
 
 export enum EtudiantsActionTypes {

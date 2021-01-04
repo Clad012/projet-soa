@@ -6,26 +6,26 @@ import {
   takeEvery,
   takeLatest,
 } from "redux-saga/effects";
-import { CadresActionTypes } from "./types";
+import { AbsencesActionTypes } from "./types";
 import {
   fetchError,
   fetchSuccess,
   fetchRequest,
-  storeCadreSuccess,
-  storeCadre,
-  updateCadre,
-  deleteCadre,
-  updateCadreSuccess,
-  deleteCadreSuccess,
-  fetchOneCadreRequest,
-  fetchOneCadreSuccess,
+  storeAbsenceSuccess,
+  storeAbsence,
+  updateAbsence,
+  deleteAbsence,
+  updateAbsenceSuccess,
+  deleteAbsenceSuccess,
+  fetchOneAbsenceRequest,
+  fetchOneAbsenceSuccess,
 } from "./actions";
 import { callApi } from "../../utils/api";
 
 function* handleFetch(action: ReturnType<typeof fetchRequest>) {
   console.log("Fetching...");
   try {
-    const res = yield call(callApi, "get", "cadres/?" + action.payload);
+    const res = yield call(callApi, "get", "absences/" + action.payload);
 
     if (res.error) {
       yield put(fetchError(res.error));
@@ -41,34 +41,14 @@ function* handleFetch(action: ReturnType<typeof fetchRequest>) {
   }
 }
 
-function* handleStoreCadre(action: ReturnType<typeof storeCadre>) {
+function* handleStoreAbsence(action: ReturnType<typeof storeAbsence>) {
   console.log("Creating...");
-  try {
-    const res = yield call(callApi, "post", "cadres", action.payload);
-
-    if (res.error) {
-      console.log(res.error);
-      yield put(fetchError(res.error));
-    } else {
-      console.log(res);
-      yield put(storeCadreSuccess(res));
-    }
-  } catch (err) {
-    if (err instanceof Error && err.stack) {
-      yield put(fetchError(err.stack));
-    } else {
-      yield put(fetchError("Une erreur est survenue."));
-    }
-  }
-}
-
-function* handleUpdateCadre(action: ReturnType<typeof updateCadre>) {
-  console.log("Updating...");
   try {
     const res = yield call(
       callApi,
-      "put",
-      `cadres/${action.payload.id}`,
+      "post",
+
+      "absences/",
       action.payload
     );
 
@@ -77,7 +57,7 @@ function* handleUpdateCadre(action: ReturnType<typeof updateCadre>) {
       yield put(fetchError(res.error));
     } else {
       console.log(res);
-      yield put(updateCadreSuccess(res));
+      yield put(storeAbsenceSuccess(res));
     }
   } catch (err) {
     if (err instanceof Error && err.stack) {
@@ -88,17 +68,23 @@ function* handleUpdateCadre(action: ReturnType<typeof updateCadre>) {
   }
 }
 
-function* handleDeleteCadre(action: ReturnType<typeof deleteCadre>) {
-  console.log("Creating...");
+function* handleUpdateAbsence(action: ReturnType<typeof updateAbsence>) {
+  console.log("Updating...");
   try {
-    const res = yield call(callApi, "delete", `cadres/${action.payload}`);
+    const res = yield call(
+      callApi,
+      "put",
+
+      `absences/${action.payload.id}`,
+      action.payload
+    );
 
     if (res.error) {
       console.log(res.error);
       yield put(fetchError(res.error));
     } else {
       console.log(res);
-      yield put(deleteCadreSuccess(res));
+      yield put(updateAbsenceSuccess(res));
     }
   } catch (err) {
     if (err instanceof Error && err.stack) {
@@ -109,15 +95,48 @@ function* handleDeleteCadre(action: ReturnType<typeof deleteCadre>) {
   }
 }
 
-function* handleFetchOneCadre(action: ReturnType<typeof fetchOneCadreRequest>) {
+function* handleDeleteAbsence(action: ReturnType<typeof deleteAbsence>) {
+  console.log("Creating...");
+  try {
+    const res = yield call(
+      callApi,
+      "delete",
+
+      `absences/${action.payload}`
+    );
+
+    if (res.error) {
+      console.log(res.error);
+      yield put(fetchError(res.error));
+    } else {
+      console.log(res);
+      yield put(deleteAbsenceSuccess(res));
+    }
+  } catch (err) {
+    if (err instanceof Error && err.stack) {
+      yield put(fetchError(err.stack));
+    } else {
+      yield put(fetchError("Une erreur est survenue."));
+    }
+  }
+}
+
+function* handleFetchOneAbsence(
+  action: ReturnType<typeof fetchOneAbsenceRequest>
+) {
   try {
     // async functions`call()`.
-    const res = yield call(callApi, "get", "cadres/" + action.payload);
+    const res = yield call(
+      callApi,
+      "get",
+
+      "absences/" + action.payload
+    );
 
     if (res.error) {
       yield put(fetchError(res.error));
     } else {
-      yield put(fetchOneCadreSuccess(res));
+      yield put(fetchOneAbsenceSuccess(res));
     }
   } catch (err) {
     if (err instanceof Error && err.stack) {
@@ -129,31 +148,34 @@ function* handleFetchOneCadre(action: ReturnType<typeof fetchOneCadreRequest>) {
 }
 
 function* watchFetchRequest() {
-  yield takeEvery(CadresActionTypes.FETCH_REQUEST, handleFetch);
+  yield takeEvery(AbsencesActionTypes.FETCH_REQUEST, handleFetch);
 }
-function* watchFetchRequestOneCadre() {
-  yield takeLatest(CadresActionTypes.FETCH_ONE_REQUEST, handleFetchOneCadre);
+function* watchFetchRequestOneAbsence() {
+  yield takeLatest(
+    AbsencesActionTypes.FETCH_ONE_REQUEST,
+    handleFetchOneAbsence
+  );
 }
-function* watchStoreCadre() {
-  yield takeLatest(CadresActionTypes.STORE_CADRE, handleStoreCadre);
+function* watchStoreAbsence() {
+  yield takeLatest(AbsencesActionTypes.STORE_ABSENCE, handleStoreAbsence);
 }
 
-function* watchUpdateCadre() {
-  yield takeLatest(CadresActionTypes.UPDATE_CADRE, handleUpdateCadre);
+function* watchUpdateAbsence() {
+  yield takeLatest(AbsencesActionTypes.UPDATE_ABSENCE, handleUpdateAbsence);
 }
-function* watchDeleteCadre() {
-  yield takeLatest(CadresActionTypes.DELETE_CADRE, handleDeleteCadre);
+function* watchDeleteAbsence() {
+  yield takeLatest(AbsencesActionTypes.DELETE_ABSENCE, handleDeleteAbsence);
 }
 
 // `fork()` to multiple watchers.
-function* cadresSaga() {
+function* absencesSaga() {
   yield all([
     fork(watchFetchRequest),
-    fork(watchFetchRequestOneCadre),
-    fork(watchStoreCadre),
-    fork(watchUpdateCadre),
-    fork(watchDeleteCadre),
+    fork(watchFetchRequestOneAbsence),
+    fork(watchStoreAbsence),
+    fork(watchUpdateAbsence),
+    fork(watchDeleteAbsence),
   ]);
 }
 
-export default cadresSaga;
+export default absencesSaga;

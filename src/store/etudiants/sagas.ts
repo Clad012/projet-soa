@@ -22,18 +22,14 @@ import {
 } from "./actions";
 import { callApi } from "../../utils/api";
 
-const isLocal = false;
-const GLITCH_ENDPOINT = "https://mockend.com/Clad012/mock_api";
-const LOCAL_API = process.env.REACT_APP_API_ENDPOINT || "http://localhost:4000";
-const API_ENDPOINT = isLocal ? LOCAL_API : GLITCH_ENDPOINT;
 function* handleFetch(action: ReturnType<typeof fetchRequest>) {
   console.log("Fetching...");
   try {
     const res = yield call(
       callApi,
       "get",
-      API_ENDPOINT,
-      "etudiants?" + action.payload
+
+      "etudiants/?" + action.payload
     );
 
     if (res.error) {
@@ -56,7 +52,7 @@ function* handleStoreEtudiant(action: ReturnType<typeof storeEtudiant>) {
     const res = yield call(
       callApi,
       "post",
-      API_ENDPOINT,
+
       "etudiants",
       action.payload
     );
@@ -83,7 +79,6 @@ function* handleUpdateEtudiant(action: ReturnType<typeof updateEtudiant>) {
     const res = yield call(
       callApi,
       "put",
-      API_ENDPOINT,
       `etudiants/${action.payload.id}`,
       action.payload
     );
@@ -107,12 +102,7 @@ function* handleUpdateEtudiant(action: ReturnType<typeof updateEtudiant>) {
 function* handleDeleteEtudiant(action: ReturnType<typeof deleteEtudiant>) {
   console.log("Creating...");
   try {
-    const res = yield call(
-      callApi,
-      "delete",
-      API_ENDPOINT,
-      `etudiants/${action.payload}`
-    );
+    const res = yield call(callApi, "delete", `etudiants/${action.payload}`);
 
     if (res.error) {
       console.log(res.error);
@@ -135,12 +125,7 @@ function* handleFetchOneEtudiant(
 ) {
   try {
     // async functions`call()`.
-    const res = yield call(
-      callApi,
-      "get",
-      API_ENDPOINT,
-      "etudiants/" + action.payload
-    );
+    const res = yield call(callApi, "get", "etudiants/" + action.payload);
 
     if (res.error) {
       yield put(fetchError(res.error));
