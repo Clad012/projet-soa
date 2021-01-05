@@ -47,6 +47,7 @@ const EtudiantForm = ({
 
   useEffect(() => {
     if (selectedEtudiant) {
+      console.log(selectedEtudiant);
       setIsCreate(false);
       form.setFieldsValue(selectedEtudiant);
     } else {
@@ -101,6 +102,7 @@ const EtudiantForm = ({
         onFinish={onFinish}
         id="myForm"
       >
+        <Form.Item shouldUpdate name="id" label="id" hidden></Form.Item>
         <Form.Item
           shouldUpdate
           name="prenom"

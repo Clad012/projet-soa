@@ -74,6 +74,11 @@ const EtudiantList = ({
   };
   const columns = [
     {
+      title: "id",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
       title: "Nom",
       dataIndex: "nom",
       key: "nom",
@@ -88,6 +93,9 @@ const EtudiantList = ({
       title: "Date de naissance",
       dataIndex: "date_naissance",
       key: "date_naissance",
+      render: (date: string) => (
+        <span>{date ? date.substring(0, 9) : "---"}</span>
+      ),
     },
     {
       title: "Classe",

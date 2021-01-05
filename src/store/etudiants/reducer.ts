@@ -12,7 +12,6 @@ export const initialState: EtudiantsState = {
 const reducer: Reducer<EtudiantsState> = (state = initialState, action) => {
   switch (action.type) {
     case EtudiantsActionTypes.FETCH_REQUEST: {
-      console.log("test2");
       return { ...state, loading: true, query: action.payload };
     }
     case EtudiantsActionTypes.FETCH_ONE_REQUEST: {
@@ -27,7 +26,7 @@ const reducer: Reducer<EtudiantsState> = (state = initialState, action) => {
     case EtudiantsActionTypes.DELETE_ETUDIANT_SUCCESS: {
       var newData = state.data.slice();
       const elementIndex = newData.findIndex(
-        (elt) => elt.elementId === action.payload
+        (elt) => elt.id === action.payload
       );
       newData.splice(elementIndex, 1);
       return {
@@ -42,10 +41,11 @@ const reducer: Reducer<EtudiantsState> = (state = initialState, action) => {
     case EtudiantsActionTypes.UPDATE_ETUDIANT_SUCCESS: {
       var newData = state.data.slice();
       const elementIndex = newData.findIndex(
-        (elt) => elt.elementId === action.payload.etudiantId
+        (elt) => elt.id === action.payload.id
       );
+      // console.log({ found: newData[elementIndex] });
+      // console.log({ returned: action.payload });
       newData[elementIndex] = action.payload;
-      newData.splice(elementIndex, 1);
       return {
         ...state,
         loading: false,

@@ -53,7 +53,7 @@ function* handleStoreEnseignant(action: ReturnType<typeof storeEnseignant>) {
       callApi,
       "post",
 
-      "enseignants",
+      "enseignants/",
       action.payload
     );
 
