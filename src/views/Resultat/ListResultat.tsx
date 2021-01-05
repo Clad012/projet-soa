@@ -3,14 +3,17 @@ import ResultatList from "../../components/Resultat/ResultatList";
 import { Card } from "antd";
 import { Button, Row, Col, notification } from "antd";
 import { UserAddOutlined, SmileOutlined } from "@ant-design/icons";
-
+import { useParams } from "react-router-dom";
 import ResultatForm from "../../components/Resultat/ResultatForm";
 import { Resultat } from "../../store/resultats/types";
-
+interface ParamTypes {
+  id_etudiant: Record<string, string | undefined>;
+}
 const ListResultat: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedResultat, setSelectedResultat] = useState<Resultat>();
   const [title, setTitle] = useState("");
+  let { id_etudiant } = useParams<Record<string, string | undefined>>();
 
   const onRequestFinished = (type: string, message: string) => {
     notification.open({
@@ -62,6 +65,7 @@ const ListResultat: React.FC = () => {
         <ResultatList
           selectResultat={selectResultat}
           onRequestFinished={onRequestFinished}
+          etudiantId={id_etudiant}
         />
       </Card>
       <ResultatForm
@@ -71,6 +75,7 @@ const ListResultat: React.FC = () => {
         handleCancel={handleCancel}
         onRequestFinished={onRequestFinished}
         selectedResultat={selectedResultat}
+        etudiantId={id_etudiant}
       />
     </div>
   );

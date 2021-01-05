@@ -103,6 +103,7 @@ const CadreForm = ({
         onFinish={onFinish}
         id="myForm"
       >
+        <Form.Item shouldUpdate name="id" label="id" hidden></Form.Item>
         <Form.Item
           shouldUpdate
           name="prenom"

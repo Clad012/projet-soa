@@ -51,3 +51,7 @@ export function* rootSaga() {
     fork(absencesSaga),
   ]);
 }
+
+// STATISTIQUES:
+// Absence: (Par DATE w Par Enseignant w Par Etudiant, , par anne_scolaire) RECHERCHE PAR ANNEE SCOLAIRE
+// Resultats: Rank (10), Taux Reussite Par Sexe, Taux Reussite par Classe, Taux Reussite par annee scolaire

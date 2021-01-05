@@ -7,7 +7,7 @@ import { DeleteOutlined, EditOutlined, DownOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Tooltip } from "antd";
 import {} from "@ant-design/icons";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Etudiant } from "../../store/etudiants/types";
 
 // We can use `typeof` here to map our dispatch types to the props, like so.
 interface PropsFromDispatch {
@@ -17,10 +17,9 @@ interface PropsFromDispatch {
 interface AbsenceListProps {
   selectAbsence: (absence: Absence) => void;
   onRequestFinished: (type: string, message: string) => void;
+  etudiantId: string | undefined;
 }
-interface ParamTypes {
-  id_etudiant: Record<string, string | undefined>;
-}
+
 type AllProps = AbsencesState & PropsFromDispatch & AbsenceListProps;
 const AbsenceList = ({
   selectAbsence,
@@ -29,9 +28,8 @@ const AbsenceList = ({
   deleteAbsence,
   fetchRequest,
   onRequestFinished,
+  etudiantId,
 }: AllProps) => {
-  let { id_etudiant } = useParams<Record<string, string | undefined>>();
-
   const getMenu = (record: Absence) => {
     return (
       <Menu>
@@ -42,7 +40,7 @@ const AbsenceList = ({
         >
           <Popconfirm
             arrowPointAtCenter
-            title="Etes-vous sûr de supprimer cet Absence?"
+            title="Etes-vous sûr de supprimer cette Absence?"
             onConfirm={() => confirmDelete(record.id)}
             okText="Oui"
             cancelText="Non"
@@ -63,34 +61,19 @@ const AbsenceList = ({
   };
   const columns = [
     {
-      title: "Nom",
-      dataIndex: "nom",
-      key: "nom",
-      render: (text: string) => <a>{text}</a>,
+      title: "Date de l'absence",
+      dataIndex: "date",
+      key: "date",
+      render: (text: string) => <strong>{text}</strong>,
     },
     {
-      title: "Prénom",
-      dataIndex: "prenom",
-      key: "prenom",
+      title: "Annee Scolaire",
+      dataIndex: "anneeScolaire",
+      key: "anneeScolaire",
     },
     {
-      title: "Date de naissance",
-      dataIndex: "date_naissance",
-      key: "date_naissance",
-    },
-    {
-      title: "Grade",
-      dataIndex: "grade",
-      key: "grade",
-    },
-    {
-      title: "Email",
-      key: "email",
-      dataIndex: "email",
-    },
-    {
-      title: "Sexe",
-      key: "sexe",
+      title: "Actions",
+      key: "actions",
       render: (text: string, record: any) => (
         <Space size="middle">
           <Dropdown overlay={getMenu(record)} trigger={["click"]}>
@@ -107,7 +90,7 @@ const AbsenceList = ({
     onRequestFinished("Succès", "Absence supprimé!");
   };
   useEffect(() => {
-    if (id_etudiant) fetchRequest(id_etudiant);
+    if (etudiantId) fetchRequest(etudiantId);
   }, []);
 
   return (

@@ -7,6 +7,7 @@ import { DeleteOutlined, EditOutlined, DownOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Tooltip } from "antd";
 import {} from "@ant-design/icons";
 import { useEffect } from "react";
+import { Etudiant } from "../../store/etudiants/types";
 
 // We can use `typeof` here to map our dispatch types to the props, like so.
 interface PropsFromDispatch {
@@ -16,6 +17,7 @@ interface PropsFromDispatch {
 interface ResultatListProps {
   selectResultat: (resultat: Resultat) => void;
   onRequestFinished: (type: string, message: string) => void;
+  etudiantId: string | undefined;
 }
 
 type AllProps = ResultatsState & PropsFromDispatch & ResultatListProps;
@@ -26,6 +28,7 @@ const ResultatList = ({
   deleteResultat,
   fetchRequest,
   onRequestFinished,
+  etudiantId,
 }: AllProps) => {
   const getMenu = (record: Resultat) => {
     return (
@@ -58,34 +61,19 @@ const ResultatList = ({
   };
   const columns = [
     {
-      title: "Nom",
-      dataIndex: "nom",
-      key: "nom",
-      render: (text: string) => <a>{text}</a>,
+      title: "Moyenne",
+      dataIndex: "moyenne",
+      key: "moyenne",
+      render: (text: string) => <strong>{text}</strong>,
     },
     {
-      title: "Prénom",
-      dataIndex: "prenom",
-      key: "prenom",
+      title: "Annee Scolaire",
+      dataIndex: "anneeScolaire",
+      key: "anneeScolaire",
     },
     {
-      title: "Date de naissance",
-      dataIndex: "date_naissance",
-      key: "date_naissance",
-    },
-    {
-      title: "Grade",
-      dataIndex: "grade",
-      key: "grade",
-    },
-    {
-      title: "Email",
-      key: "email",
-      dataIndex: "email",
-    },
-    {
-      title: "Sexe",
-      key: "sexe",
+      title: "Actions",
+      key: "actions",
       render: (text: string, record: any) => (
         <Space size="middle">
           <Dropdown overlay={getMenu(record)} trigger={["click"]}>
@@ -102,7 +90,7 @@ const ResultatList = ({
     onRequestFinished("Succès", "Resultat supprimé!");
   };
   useEffect(() => {
-    fetchRequest("");
+    if (etudiantId) fetchRequest(etudiantId);
   }, []);
 
   return (

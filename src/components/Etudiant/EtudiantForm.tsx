@@ -132,12 +132,19 @@ const EtudiantForm = ({
         </Form.Item>
         <Form.Item name="sexe" label="Sexe" rules={[{ required: true }]}>
           <Select placeholder="Selectionner une option" allowClear>
-            <Option value="male">Homme</Option>
-            <Option value="female">Femme</Option>
+            <Option value="Homme">Homme</Option>
+            <Option value="Femme">Femme</Option>
           </Select>
         </Form.Item>
         <Form.Item name="classe" label="Classe" rules={[{ required: true }]}>
-          <Input placeholder="Classe de l'étudiant..." />
+          <Select placeholder="Classe de l'étudiant..." allowClear>
+            <Option value="IF3">IF3</Option>
+            <Option value="IF4">IF4</Option>
+            <Option value="IF5">IF5</Option>
+            <Option value="LFI1">LFI1</Option>
+            <Option value="LFI2">LFI2</Option>
+            <Option value="LFI3">LFI3</Option>
+          </Select>
         </Form.Item>
       </Form>
     </Modal>

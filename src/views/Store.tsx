@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Card, Image } from "antd";
-import StatisticCard from "../components/StatisticCard";
+import LineChart from "../components/Statistique/LineChart";
 
 const Store: React.FC = () => {
   const statisticCards = [
@@ -11,7 +11,7 @@ const Store: React.FC = () => {
   ];
   const renderCards = statisticCards.map((obj) => (
     <Col xs={24} sm={12} md={6}>
-      <StatisticCard title={obj.title} />
+      <LineChart title={obj.title} />
     </Col>
   ));
 

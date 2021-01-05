@@ -6,20 +6,20 @@ export const fetchRequest = (query: string) =>
 export const fetchOneResultatRequest = (query: string) =>
   action(ResultatsActionTypes.FETCH_ONE_REQUEST, query);
 
-export const storeResultat = (cadre: Resultat) =>
-  action(ResultatsActionTypes.STORE_RESULTAT, cadre);
-export const storeResultatSuccess = (cadre: Resultat) =>
-  action(ResultatsActionTypes.STORE_RESULTAT_SUCCESS, cadre);
+export const storeResultat = (resultat: Resultat) =>
+  action(ResultatsActionTypes.STORE_RESULTAT, resultat);
+export const storeResultatSuccess = (resultat: Resultat) =>
+  action(ResultatsActionTypes.STORE_RESULTAT_SUCCESS, resultat);
 
-export const deleteResultat = (cadreId: number) =>
-  action(ResultatsActionTypes.DELETE_RESULTAT, cadreId);
-export const deleteResultatSuccess = (cadreId: number) =>
-  action(ResultatsActionTypes.DELETE_RESULTAT_SUCCESS, cadreId);
+export const deleteResultat = (resultatId: number) =>
+  action(ResultatsActionTypes.DELETE_RESULTAT, resultatId);
+export const deleteResultatSuccess = (resultatId: number) =>
+  action(ResultatsActionTypes.DELETE_RESULTAT_SUCCESS, resultatId);
 
-export const updateResultat = (cadre: Resultat) =>
-  action(ResultatsActionTypes.UPDATE_RESULTAT, cadre);
-export const updateResultatSuccess = (cadre: Resultat) =>
-  action(ResultatsActionTypes.UPDATE_RESULTAT_SUCCESS, cadre);
+export const updateResultat = (resultat: Resultat) =>
+  action(ResultatsActionTypes.UPDATE_RESULTAT, resultat);
+export const updateResultatSuccess = (resultat: Resultat) =>
+  action(ResultatsActionTypes.UPDATE_RESULTAT_SUCCESS, resultat);
 
 export const setQuery = (query: string) =>
   action(ResultatsActionTypes.SET_QUERY, query);

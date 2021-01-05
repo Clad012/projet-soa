@@ -18,3 +18,43 @@
 .responsive-table {
   overflow-x: auto;
 }
+.mt-2 {
+  margin-bottom: 20px;
+}
+.rankItem {
+  padding: 6px;
+  cursor: pointer;
+}
+.rank {
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  display: inline-block;
+  border-radius: 100%;
+  background-color: royalblue;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.rankStudent {
+  margin-right: 10px;
+  font-weight: 400;
+  font-size: 18px;
+}
+.rankRate {
+  font-weight: 600;
+  color: teal;
+  margin-right: 10px;
+}
+.rankItem:hover {
+  background: rgb(211, 210, 210);
+}
+.rateHolder {
+  float: right;
+}
+.home-description {
+  padding: 15px;
+  border-left: 4px solid rgb(11, 199, 233);
+  background: rgb(235, 234, 234);
+  margin-top: 50px;
+}

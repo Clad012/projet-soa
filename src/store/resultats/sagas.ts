@@ -49,13 +49,17 @@ function* handleFetch(action: ReturnType<typeof fetchRequest>) {
 function* handleStoreResultat(action: ReturnType<typeof storeResultat>) {
   console.log("Creating...");
   try {
-    const res = yield call(callApi, "post", "resultats", action.payload);
+    const res = yield call(
+      callApi,
+      "post",
+      "resultats/" + action.payload.etudiantId,
+      action.payload
+    );
 
     if (res.error) {
       console.log(res.error);
       yield put(fetchError(res.error));
     } else {
-      console.log(res);
       yield put(storeResultatSuccess(res));
     }
   } catch (err) {

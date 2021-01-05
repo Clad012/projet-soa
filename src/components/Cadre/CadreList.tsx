@@ -86,6 +86,11 @@ const CadreList = ({
     {
       title: "Sexe",
       key: "sexe",
+      dataIndex: "sexe",
+    },
+    {
+      title: "Actions",
+      key: "actons",
       render: (text: string, record: any) => (
         <Space size="middle">
           <Dropdown overlay={getMenu(record)} trigger={["click"]}>

@@ -3,6 +3,7 @@ import AbsenceList from "../../components/Absence/AbsenceList";
 import { Card } from "antd";
 import { Button, Row, Col, notification } from "antd";
 import { UserAddOutlined, SmileOutlined } from "@ant-design/icons";
+import { useParams } from "react-router-dom";
 
 import AbsenceForm from "../../components/Absence/AbsenceForm";
 import { Absence } from "../../store/absences/types";
@@ -11,6 +12,7 @@ const ListAbsence: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedAbsence, setSelectedAbsence] = useState<Absence>();
   const [title, setTitle] = useState("");
+  let { id_etudiant } = useParams<Record<string, string | undefined>>();
 
   const onRequestFinished = (type: string, message: string) => {
     notification.open({
@@ -22,7 +24,7 @@ const ListAbsence: React.FC = () => {
   };
   const showModal = (create: boolean) => {
     if (create) {
-      setTitle("Ajouter un nouveau absence");
+      setTitle("Noter une nouvelle absence");
       setSelectedAbsence(undefined);
     }
     setIsModalVisible(true);
@@ -54,7 +56,7 @@ const ListAbsence: React.FC = () => {
             onClick={() => showModal(true)}
             icon={<UserAddOutlined />}
           >
-            Ajouter un nouveau absence
+            Noter une nouvelle absence
           </Button>
         </Col>
       </Row>
@@ -62,6 +64,7 @@ const ListAbsence: React.FC = () => {
         <AbsenceList
           selectAbsence={selectAbsence}
           onRequestFinished={onRequestFinished}
+          etudiantId={id_etudiant}
         />
       </Card>
       <AbsenceForm
@@ -71,6 +74,7 @@ const ListAbsence: React.FC = () => {
         handleCancel={handleCancel}
         onRequestFinished={onRequestFinished}
         selectedAbsence={selectedAbsence}
+        etudiantId={id_etudiant}
       />
     </div>
   );

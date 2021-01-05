@@ -21,6 +21,7 @@ interface CreateModalProps {
   handleCancel: () => void;
   onRequestFinished: (type: string, message: string) => void;
   selectedResultat: Resultat | undefined;
+  etudiantId: string | undefined;
 }
 
 interface PropsFromDispatch {
@@ -40,6 +41,7 @@ const ResultatForm = ({
   selectedResultat,
   updateResultat,
   loading,
+  etudiantId,
 }: AllProps) => {
   const [requestSent, setRequestSent] = useState(false);
   const [isCreate, setIsCreate] = useState(true);
@@ -67,7 +69,7 @@ const ResultatForm = ({
 
   const onFinish = (values: Resultat) => {
     setRequestSent(true);
-    if (isCreate) storeResultat(values);
+    if (isCreate) storeResultat({ ...values, etudiantId });
     else {
       updateResultat(values);
     }
@@ -101,42 +103,41 @@ const ResultatForm = ({
         onFinish={onFinish}
         id="myForm"
       >
+        <Form.Item shouldUpdate name="id" label="id" hidden></Form.Item>
         <Form.Item
           shouldUpdate
-          name="prenom"
-          label="Prénom"
-          rules={[{ required: true }]}
+          name="moyenne"
+          label="Moyenne"
+          rules={[{ required: true, max: 20, min: 0 }]}
         >
-          <Input placeholder="Prénom de l'resultat..." />
-        </Form.Item>
-
-        <Form.Item name="nom" label="Nom" rules={[{ required: true }]}>
-          <Input placeholder="Nom de l'resultat..." />
+          <Input
+            placeholder="Préciser la moyenne..."
+            type="number"
+            min="0"
+            max="20"
+          />
         </Form.Item>
 
         <Form.Item
-          name="email"
-          label="Email"
-          rules={[{ required: true, type: "email" }]}
-        >
-          <Input placeholder="Nom de l'resultat..." type="email" />
-        </Form.Item>
-        <Form.Item
-          name="date_naissance"
-          label="Date de naissance"
+          name="anneeScolaire"
+          label="Année scolaire"
           rules={[{ required: true }]}
         >
-          <Input placeholder="Date de naissance" type="date" />
-        </Form.Item>
-        <Form.Item name="sexe" label="Sexe" rules={[{ required: true }]}>
           <Select placeholder="Selectionner une option" allowClear>
-            <Option value="male">Homme</Option>
-            <Option value="female">Femme</Option>
+            <Option value="2019/2020">2019/2020</Option>
+            <Option value="2020/2021">2020/2021</Option>
+            <Option value="2021/2022">2021/2022</Option>
+            <Option value="2022/2023">2022/2023</Option>
+            <Option value="2023/2024">2023/2024</Option>
           </Select>
         </Form.Item>
-        <Form.Item name="grade" label="Grade" rules={[{ required: true }]}>
-          <Input placeholder="Grade de l'resultat..." />
-        </Form.Item>
+        {/* <Form.Item
+          name="anneeScolaire"
+          label="Année scolaire"
+          rules={[{ required: true }]}
+        >
+          <Input placeholder="Préciser l'année scolaire..." />
+        </Form.Item> */}
       </Form>
     </Modal>
   );

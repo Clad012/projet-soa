@@ -5,28 +5,16 @@ import { Line } from "@ant-design/charts";
 interface StatisticCardProps {
   title: string;
   subTitle?: string;
-  data?: [];
+  data?: any;
 }
-const StatisticCard: React.FC<StatisticCardProps> = ({ title }) => {
-  const data = [
-    { critere: "1991", nombre: 3 },
-    { critere: "1992", nombre: 4 },
-    { critere: "1993", nombre: 3.5 },
-    { critere: "1994", nombre: 5 },
-    { critere: "1995", nombre: 4.9 },
-    { critere: "1996", nombre: 6 },
-    { critere: "1997", nombre: 7 },
-    { critere: "1998", nombre: 9 },
-    { critere: "1999", nombre: 13 },
-  ];
-
+const LineChart: React.FC<StatisticCardProps> = ({ title, data }) => {
   const config = {
     data,
     responsive: true,
-    height: 100,
+    height: 300,
     autoFit: true,
     xField: "critere",
-    yField: "nombre",
+    yField: "valeur",
     point: {
       size: 5,
       shape: "diamond",
@@ -48,7 +36,7 @@ const StatisticCard: React.FC<StatisticCardProps> = ({ title }) => {
   //   };
   return (
     <div>
-      <Card title={title} bordered={false} className="maxHeight">
+      <Card title={title} bordered={false}>
         <div>
           <Line {...config} chartRef={ref} />
         </div>
@@ -56,4 +44,4 @@ const StatisticCard: React.FC<StatisticCardProps> = ({ title }) => {
     </div>
   );
 };
-export default StatisticCard;
+export default LineChart;

@@ -48,7 +48,7 @@ function* handleStoreAbsence(action: ReturnType<typeof storeAbsence>) {
       callApi,
       "post",
 
-      "absences/",
+      "absences/" + action.payload.etudiantId,
       action.payload
     );
 

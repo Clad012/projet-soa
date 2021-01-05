@@ -1,11 +1,7 @@
 export interface Absence extends ApiResponse {
   id: number;
-  nom: string;
-  prenom: string;
-  email: string;
-  date_naissance: Date;
-  poste: string;
-  sexe: string;
+  note: number;
+  anneScolaire: string;
 }
 
 export type ApiResponse = Record<string, any>;

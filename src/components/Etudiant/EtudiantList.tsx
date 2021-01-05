@@ -3,6 +3,7 @@ import { EtudiantsState, Etudiant } from "../../store/etudiants/types";
 import { fetchRequest, deleteEtudiant } from "../../store/etudiants/actions";
 import { connect } from "react-redux";
 import { ApplicationState } from "../../store";
+import { useHistory } from "react-router-dom";
 import {
   DeleteOutlined,
   EditOutlined,
@@ -33,6 +34,7 @@ const EtudiantList = ({
   fetchRequest,
   onRequestFinished,
 }: AllProps) => {
+  const history = useHistory();
   const getMenu = (record: Etudiant) => {
     return (
       <Menu>
@@ -63,21 +65,21 @@ const EtudiantList = ({
           key="1"
           icon={<CheckSquareOutlined />}
           style={{ color: "#192a56" }}
+          onClick={() => history.push("/absences/" + record.id)}
         >
-          Marquer comme absent
+          Gérer les absences
         </Menu.Item>
-        <Menu.Item key="2" icon={<AuditOutlined />}>
-          Attribuer une note
+        <Menu.Item
+          key="2"
+          icon={<AuditOutlined />}
+          onClick={() => history.push("/resultats/" + record.id)}
+        >
+          Gérer les résultats
         </Menu.Item>
       </Menu>
     );
   };
   const columns = [
-    {
-      title: "id",
-      dataIndex: "id",
-      key: "id",
-    },
     {
       title: "Nom",
       dataIndex: "nom",
@@ -94,7 +96,7 @@ const EtudiantList = ({
       dataIndex: "date_naissance",
       key: "date_naissance",
       render: (date: string) => (
-        <span>{date ? date.substring(0, 9) : "---"}</span>
+        <span>{date ? date.substring(0, 10) : "---"}</span>
       ),
     },
     {
@@ -110,6 +112,11 @@ const EtudiantList = ({
     {
       title: "Sexe",
       key: "sexe",
+      dataIndex: "sexe",
+    },
+    {
+      title: "Actions",
+      key: "actons",
       render: (text: string, record: any) => (
         <Space size="middle">
           <Dropdown overlay={getMenu(record)} trigger={["click"]}>

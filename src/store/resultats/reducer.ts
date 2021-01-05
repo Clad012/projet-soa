@@ -27,7 +27,7 @@ const reducer: Reducer<ResultatsState> = (state = initialState, action) => {
     case ResultatsActionTypes.DELETE_RESULTAT_SUCCESS: {
       var newData = state.data.slice();
       const elementIndex = newData.findIndex(
-        (elt) => elt.elementId === action.payload
+        (elt) => elt.id === action.payload
       );
       newData.splice(elementIndex, 1);
       return {
@@ -42,10 +42,9 @@ const reducer: Reducer<ResultatsState> = (state = initialState, action) => {
     case ResultatsActionTypes.UPDATE_RESULTAT_SUCCESS: {
       var newData = state.data.slice();
       const elementIndex = newData.findIndex(
-        (elt) => elt.elementId === action.payload.resultatId
+        (elt) => elt.id === action.payload.id
       );
       newData[elementIndex] = action.payload;
-      newData.splice(elementIndex, 1);
       return {
         ...state,
         loading: false,

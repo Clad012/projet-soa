@@ -27,7 +27,7 @@ const reducer: Reducer<CadresState> = (state = initialState, action) => {
     case CadresActionTypes.DELETE_CADRE_SUCCESS: {
       var newData = state.data.slice();
       const elementIndex = newData.findIndex(
-        (elt) => elt.elementId === action.payload
+        (elt) => elt.id === action.payload
       );
       newData.splice(elementIndex, 1);
       return {
@@ -42,10 +42,9 @@ const reducer: Reducer<CadresState> = (state = initialState, action) => {
     case CadresActionTypes.UPDATE_CADRE_SUCCESS: {
       var newData = state.data.slice();
       const elementIndex = newData.findIndex(
-        (elt) => elt.elementId === action.payload.cadreId
+        (elt) => elt.id === action.payload.id
       );
       newData[elementIndex] = action.payload;
-      newData.splice(elementIndex, 1);
       return {
         ...state,
         loading: false,
