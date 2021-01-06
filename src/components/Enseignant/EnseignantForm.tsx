@@ -134,8 +134,8 @@ const EnseignantForm = ({
         </Form.Item>
         <Form.Item name="sexe" label="Sexe" rules={[{ required: true }]}>
           <Select placeholder="Selectionner une option" allowClear>
-            <Option value="male">Homme</Option>
-            <Option value="female">Femme</Option>
+            <Option value="Homme">Homme</Option>
+            <Option value="Femme">Femme</Option>
           </Select>
         </Form.Item>
         <Form.Item name="grade" label="Grade" rules={[{ required: true }]}>
