@@ -1,6 +1,6 @@
 const isLocal = false;
 const AWS_ENDPOINT =
-  "https://cors-anywhere.herokuapp.com/http://ec2-3-239-93-252.compute-1.amazonaws.com:8080";
+  "https://vast-beyond-41344.herokuapp.com/http://ec2-3-239-93-252.compute-1.amazonaws.com:8080";
 const LOCAL_API = "http://localhost:8000/http://localhost:8080";
 const API_ENDPOINT = isLocal ? LOCAL_API : AWS_ENDPOINT;
 
