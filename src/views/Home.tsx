@@ -17,7 +17,7 @@ export default function Home() {
           <div className="home-description">
             <p>
               Cette application est développée dans le cadre d'un projet SOA &
-              CLOUD proposé par Messieurs Heithem Abbess & Islam Denen{" "}
+              CLOUD proposé par Messieurs Heithem Abbess & Islem Denen{" "}
             </p>
             <p>
               L'application offre une gestion totale pour le Département
