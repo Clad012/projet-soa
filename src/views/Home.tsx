@@ -27,11 +27,10 @@ export default function Home() {
             <p>
               L'application est dépoyé sur AWS, la partie Backend est developpé
               avec Spring Boot, Spring Cloud en adoptant l'architecture
-              Microservices, pour la partie front est développé avec React &
+              Microservices, et la partie front est développé avec React &
               Typescript. <br></br>
               La conteneurisation est assuré par Docker et Docker-Compose.
             </p>
-            <p>La partie Front End est développée avec React Typescript</p>
           </div>
         </div>
       </Card>
