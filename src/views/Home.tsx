@@ -1,4 +1,4 @@
-import { Card, Image, Row, Col } from "antd";
+import { Card, Col, Image, Row } from "antd";
 import React from "react";
 
 export default function Home() {
@@ -17,18 +17,19 @@ export default function Home() {
           <div className="home-description">
             <p>
               Cette application est développée dans le cadre d'un projet SOA &
-              CLOUD proposé par Monsieur Heithem Abbess & Islam Denen{" "}
+              CLOUD proposé par Messieurs Heithem Abbess & Islam Denen{" "}
             </p>
             <p>
-              L'application offre une gestion totale pour le département
-              informatique au seins de la faculté des sciences. Ainsi qu'un
+              L'application offre une gestion totale pour le Département
+              Informatique au seins de la Faculté Des sciences. Ainsi qu'un
               Dashboard pour la consultation des statistiques.
             </p>
             <p>
               L'application est dépoyé sur AWS, la partie Backend est developpé
               avec Spring Boot, Spring Cloud en adoptant l'architecture
-              Microservices et en utilisant Docker et Docker Compose pour la
-              containr???
+              Microservices, pour la partie front est développé avec React &
+              Typescript. <br></br>
+              La conteneurisation est assuré par Docker et Docker-Compose.
             </p>
             <p>La partie Front End est développée avec React Typescript</p>
           </div>
